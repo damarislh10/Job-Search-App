@@ -1,0 +1,16 @@
+.row {
+  display: grid;
+  grid-template-columns: 4fr 9fr;
+  grid-template-rows: 1fr;
+  gap: 10px 400px;
+  align-items: center;
+  margin-bottom: 3%;
+}
+
+.container-form {
+  display: flex;
+  justify-content: center;
+}
+
+
+
