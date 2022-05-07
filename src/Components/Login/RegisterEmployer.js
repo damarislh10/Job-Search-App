@@ -13,6 +13,7 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import "../../styles/RegisterEmployer.css";
+import { TitleText } from "../TitleText";
 const names = [
   "Oliver Hansen",
   "Van Henry",
@@ -51,6 +52,10 @@ export const RegisterEmployer = () => {
   return (
     <Container sx={{ width: "40%" }}>
       <form className="container-form">
+        <div>
+        <TitleText text="Registra tu empresa "/>
+
+        </div>
         <Grid container spacing={9}>
           <Grid item xs={6} className="cont-grid">
             <InputLabel

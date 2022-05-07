@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const InicioSesion = () => {
+export const LoginEmployee = () => {
   return (
     <div>InicioSesion</div>
   )

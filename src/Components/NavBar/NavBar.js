@@ -109,12 +109,12 @@ export const NavBar = () => {
                         aria-labelledby="composition-button"
                         onKeyDown={handleListKeyDown}
                       >
-                        <Link href="/companies/new" underline="none">
+                        <Link className="link-menu" href="/companies/new" underline="none">
                           <MenuItem onClick={handleClose}>
                             <ApartmentIcon /> Empleadores
                           </MenuItem>
                         </Link>
-                        <Link href="/webpros/login" underline="none">
+                        <Link className="link-menu" href="/webpros/login" underline="none">
                           <MenuItem onClick={handleClose}>
                             <PersonIcon /> Profesionales
                           </MenuItem>
