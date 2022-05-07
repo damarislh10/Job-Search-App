@@ -1,33 +1,18 @@
-import { Container } from "@mui/material";
-import React from "react";
-
-import { FormControl } from "@mui/material";
 import {
   Button,
-  FormHelperText,
-  Input,
+  Container,
+  FormControl,
+  Grid,
   InputLabel,
+  MenuItem,
   OutlinedInput,
-  TextField,
-  Typography,
+  Select,
 } from "@material-ui/core";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Typography from "@mui/material/Typography";
+import React from "react";
 import { useTheme } from "@mui/material/styles";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import "../../styles/RegisterEmployer.css";
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 const names = [
   "Oliver Hansen",
   "Van Henry",
@@ -40,7 +25,6 @@ const names = [
   "Virginia Andrews",
   "Kelly Snyder",
 ];
-
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -52,6 +36,7 @@ function getStyles(name, personName, theme) {
 
 export const RegisterEmployer = () => {
   const theme = useTheme();
+
   const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
@@ -64,148 +49,181 @@ export const RegisterEmployer = () => {
     );
   };
   return (
-    <Container maxWidth="lg">
-      <Typography
-        color="info"
-        variant="h4"
-        component="div"
-        sx={{ flexGrow: 1, fontWeight: "bold" }}
-      >
-        Registra tu empresa
-      </Typography>
-      <div className="container-form">
-        <div className="contenedor-Formulario">
-          <form className="contact-form">
-            <FormControl className="controller">
-              <div className="row">
-                <div className="col">
-                  <InputLabel htmlFor="component-outlined">
-                    Nombre de la empresa
-                  </InputLabel>
-                </div>
-                <div className="col-2">
-                  <OutlinedInput
-                    margin="dense"
-                    className="input1-form"
-                    id="component-outlined"
-                    label="Name"
-                  />
-                </div>
-              </div>
-            </FormControl>
-
-            <FormControl sx={{ m: 1, minWidth: "98%" }}>
-              <div className="row">
-                <div className="col">
-                  <InputLabel id="demo-multiple-name-label">Pais</InputLabel>{" "}
-                </div>
-                <div className="col-2">
-                  <InputLabel id="demo-multiple-name-label">Select</InputLabel>
-                  <Select
-                    margin="dense"
-                    labelId="demo-multiple-name-label"
-                    id="demo-multiple-name"
-                    multiple
-                    value={personName}
-                    onChange={handleChange}
-                    input={<OutlinedInput label="Name" />}
-                    MenuProps={MenuProps}
+    <Container sx={{ width: "40%" }}>
+      <form className="container-form">
+        <Grid container spacing={9}>
+          <Grid item xs={6} className="cont-grid">
+            <InputLabel
+              className="label-text-form"
+              htmlFor="component-outlined"
+            >
+              Nombre de la empresa
+            </InputLabel>
+            <Typography className="text-help" variant="body1" gutterBottom>
+              ¿Tu empresa ya existe en Job search App? No crees un duplicado.
+            </Typography>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <OutlinedInput
+              style={{ width: 400 }}
+              margin="dense"
+              className="input1-form"
+              id="component-outlined"
+            />
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <InputLabel
+              className="label-text-form"
+              id="demo-multiple-name-label"
+            >
+              Pais
+            </InputLabel>
+            <Typography className="text-help" variant="body1" gutterBottom>
+              Puedes publicar empleos en todos los países donde estamos
+              presentes, independiente de tu ubicación.
+            </Typography>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <FormControl sx={{ m: 1, minWidth: 200 }}>
+              <Select
+                value={personName}
+                onChange={handleChange}
+                displayEmpty
+                inputProps={{ "aria-label": "Without label" }}
+                input={<OutlinedInput style={{ width: 400 }} />}
+              >
+                <MenuItem value="">
+                  <span>Selecciona</span>
+                </MenuItem>
+                {names.map((name) => (
+                  <MenuItem
+                    className="select-pais"
+                    key={name}
+                    value={name}
+                    style={getStyles(name, personName, theme)}
                   >
-                    <MenuItem className="select-pais" selected>
-                      Selecciona
-                    </MenuItem>
-                    <MenuItem className="select-pais">Colombia</MenuItem>
-
-                    {/* {names.map((name) => (
-                      <MenuItem
-                        className="select-pais"
-                        key={name}
-                        value={name}
-                        style={getStyles(name, personName, theme)}
-                      >
-                        {name}
-                      </MenuItem>
-                    ))} */}
-                  </Select>
-                </div>
-              </div>
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
             </FormControl>
-            <FormControl>
-              <div className="row">
-                <div className="col">
-                  <InputLabel htmlFor="component-outlined">
-                    Logo de la empresa
-                  </InputLabel>
-                </div>
-                <div className="col-2">
-                  <Button variant="outlined" component="label">
-                    Seleccionar una imagen
-                    <input type="file" hidden />
-                  </Button>
-                </div>
-              </div>
-            </FormControl>
-            <FormControl>
-              <div className="row">
-                <div className="col">
-                  <InputLabel htmlFor="component-outlined">
-                    E-mail de la cuenta de administrador
-                  </InputLabel>
-                </div>
-                <div className="col-2">
-                  <OutlinedInput
-                    margin="dense"
-                    className="input1-form"
-                    id="component-outlined"
-                    label="Name"
-                  />
-                </div>
-              </div>
-            </FormControl>
-            <FormControl>
-              <div className="row">
-                <div className="col">
-                  <InputLabel htmlFor="component-outlined">
-                    <LinkedInIcon color="primary" /> URL del perfil de tu
-                    empresa en Linkedin
-                  </InputLabel>
-                </div>
-                <div className="col-2">
-                  <OutlinedInput
-                    margin="dense"
-                    className="input1-form"
-                    id="component-outlined"
-                    label="Name"
-                    rows={4}
-
-                  />
-                </div>
-              </div>
-            </FormControl>
-            <FormControl>
-              <div className="row">
-                <div className="col">
-                  <InputLabel htmlFor="component-outlined">
-                    Descripción de la empresa
-                  </InputLabel>
-                </div>
-                <div className="col-2">
-                  <OutlinedInput
-                    sx={{ mt: 2 }}
-                    name="message"
-                    required
-                    color="primary"
-                    label="Escribe tu mensaje"
-                    multiline
-                    rows={4}
-                    col={3}
-                  />
-                </div>
-              </div>
-            </FormControl>
-          </form>
-        </div>
-      </div>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <InputLabel
+              className="label-text-form"
+              htmlFor="component-outlined"
+            >
+              Logo de la empresa
+            </InputLabel>
+            <Typography className="text-help" variant="body1" gutterBottom>
+              Mínimo 200x200 px, en formato cuadrado (por ejemplo, el logo que
+              usas para Twitter o Facebook).
+            </Typography>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <Button variant="outlined" component="label">
+              Seleccionar una imagen
+              <input type="file" hidden />
+            </Button>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <InputLabel
+              className="label-text-form"
+              htmlFor="component-outlined"
+            >
+              E-mail de la cuenta de administrador
+            </InputLabel>
+            <Typography className="text-help" variant="body1" gutterBottom>
+              Con esta cuenta tendrás acceso completo de administrador de la
+              empresa y podrás agregar nuevos miembros al equipo.
+            </Typography>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <OutlinedInput
+              style={{ width: 400 }}
+              type="email"
+              margin="dense"
+              className="input1-form"
+              id="component-outlined"
+            />
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <InputLabel
+              className="label-text-form"
+              htmlFor="component-outlined"
+            >
+              <LinkedInIcon color="primary" /> URL del perfil de tu empresa en
+              Linkedin
+            </InputLabel>
+            <Typography className="text-help" variant="body1" gutterBottom>
+              Agrega el perfil de tu empresa y haz que tus empleos aparezcan
+              automáticamente en los resultados de búsqueda en LinkedIn.
+            </Typography>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <OutlinedInput
+              type="text"
+              style={{ width: 400 }}
+              placeholder="http://www.linkedin.com/yourcompany"
+              margin="dense"
+              className="input1-form"
+              id="component-outlined"
+            />
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <InputLabel
+              className="label-text-form"
+              htmlFor="component-outlined"
+            >
+              Sitio web de la empresa
+            </InputLabel>
+            <Typography className="text-help" variant="body1" gutterBottom>
+              Agrega tu sitio web para que te conozcan más los postulantes.
+            </Typography>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <OutlinedInput
+              type="text"
+              style={{ width: 400 }}
+              placeholder="http://"
+              margin="dense"
+              className="input1-form"
+              id="component-outlined"
+            />
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <InputLabel
+              className="label-text-form"
+              htmlFor="component-outlined"
+            >
+              Descripción de la empresa
+            </InputLabel>
+            <Typography className="text-help" variant="body1" gutterBottom>
+              La pondremos al pie de todos tus empleos.
+            </Typography>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <OutlinedInput
+              type="text"
+              style={{ width: 400 }}
+              multiline
+              margin="dense"
+              className="input1-form"
+              id="component-outlined"
+              rows={4}
+            />
+          </Grid>
+          <div className="btn-register-company">
+            <Button
+              type="submit"
+              variant="contained"
+              className="buttonRegister"
+            >
+              Crear cuenta
+            </Button>
+          </div>
+        </Grid>
+      </form>
     </Container>
   );
 };

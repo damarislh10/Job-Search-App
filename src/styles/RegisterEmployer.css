@@ -1,16 +1,24 @@
-.row {
-  display: grid;
-  grid-template-columns: 4fr 9fr;
-  grid-template-rows: 1fr;
-  gap: 10px 400px;
-  align-items: center;
-  margin-bottom: 3%;
+.cont-grid{
+  border-bottom: 1px solid rgba(135,153,160,0.25);
 }
 
 .container-form {
-  display: flex;
-  justify-content: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.label-text-form{
+  color: #2b353b !important;
+  font-weight: 600 !important;
+}
+
+.text-help{
+  color: #627884;
+  font-size: 14px !important;
+  padding: 5% 0 !important;
 }
 
 
-
+.btn-register-company{
+  margin: 2% 0;
+}
