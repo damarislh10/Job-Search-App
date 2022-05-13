@@ -14,17 +14,16 @@ import { useTheme } from "@mui/material/styles";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import "../../styles/RegisterEmployer.css";
 import { TitleText } from "../TitleText";
+import { useRef } from "react";
 const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
+  "Colombia",
+  "Mexico",
+  "Panama",
+  "Perú",
+  "Chile",
+  "Venezuela",
+  "Costa rica",
+  "Estados unidos",
 ];
 function getStyles(name, personName, theme) {
   return {
@@ -37,9 +36,37 @@ function getStyles(name, personName, theme) {
 
 export const RegisterEmployer = () => {
   const theme = useTheme();
-
   const [personName, setPersonName] = React.useState([]);
 
+  const nombreEmpresa = useRef();
+  const pais = useRef();
+  const logo = useRef();
+  const emailAdmin = useRef();
+  const passwordAdmin = useRef();
+  const urlLinkedin = useRef();
+  const descripcion = useRef();
+
+  const signup = (event) => {
+    event.preventDefault();
+    fetch("http://localhost:4000/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombreEmpresa: nombreEmpresa.current.value,
+        pais: pais.current.value,
+        logo: logo.current.value,
+        emailAdmin: emailAdmin.current.value,
+        passwordAdmin: passwordAdmin.current.value,
+        urlLinkedin: urlLinkedin.current.value,
+        descripcion: descripcion.current.value,
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error)),
+    });
+  };
   const handleChange = (event) => {
     const {
       target: { value },
@@ -51,10 +78,9 @@ export const RegisterEmployer = () => {
   };
   return (
     <Container sx={{ width: "40%" }}>
-      <form className="container-form">
+      <form onSubmit={signup} className="container-form">
         <div>
-        <TitleText text="Registra tu empresa "/>
-
+          <TitleText text="Registra tu empresa " />
         </div>
         <Grid container spacing={9}>
           <Grid item xs={6} className="cont-grid">
@@ -70,6 +96,7 @@ export const RegisterEmployer = () => {
           </Grid>
           <Grid item xs={6} className="cont-grid">
             <OutlinedInput
+              rel={nombreEmpresa}
               style={{ width: 400 }}
               margin="dense"
               className="input1-form"
@@ -92,7 +119,7 @@ export const RegisterEmployer = () => {
             <FormControl sx={{ m: 1, minWidth: 200 }}>
               <Select
                 value={personName}
-                onChange={handleChange}
+                rel={pais}
                 displayEmpty
                 inputProps={{ "aria-label": "Without label" }}
                 input={<OutlinedInput style={{ width: 400 }} />}
@@ -128,7 +155,7 @@ export const RegisterEmployer = () => {
           <Grid item xs={6} className="cont-grid">
             <Button variant="outlined" component="label">
               Seleccionar una imagen
-              <input type="file" hidden />
+              <input type="file" hidden rel={logo} />
             </Button>
           </Grid>
           <Grid item xs={6} className="cont-grid">
@@ -145,6 +172,7 @@ export const RegisterEmployer = () => {
           </Grid>
           <Grid item xs={6} className="cont-grid">
             <OutlinedInput
+              rel={emailAdmin}
               style={{ width: 400 }}
               type="email"
               margin="dense"
@@ -152,6 +180,25 @@ export const RegisterEmployer = () => {
               id="component-outlined"
             />
           </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <InputLabel
+              className="label-text-form"
+              htmlFor="component-outlined"
+            >
+              Contraseña cuenta administrador
+            </InputLabel>
+          </Grid>
+          <Grid item xs={6} className="cont-grid">
+            <OutlinedInput
+              style={{ width: 400 }}
+              rel={passwordAdmin}
+              type="password"
+              margin="dense"
+              className="input1-form"
+              id="component-outlined"
+            />
+          </Grid>
+
           <Grid item xs={6} className="cont-grid">
             <InputLabel
               className="label-text-form"
@@ -168,6 +215,7 @@ export const RegisterEmployer = () => {
           <Grid item xs={6} className="cont-grid">
             <OutlinedInput
               type="text"
+              rel={urlLinkedin}
               style={{ width: 400 }}
               placeholder="http://www.linkedin.com/yourcompany"
               margin="dense"
@@ -175,27 +223,7 @@ export const RegisterEmployer = () => {
               id="component-outlined"
             />
           </Grid>
-          <Grid item xs={6} className="cont-grid">
-            <InputLabel
-              className="label-text-form"
-              htmlFor="component-outlined"
-            >
-              Sitio web de la empresa
-            </InputLabel>
-            <Typography className="text-help" variant="body1" gutterBottom>
-              Agrega tu sitio web para que te conozcan más los postulantes.
-            </Typography>
-          </Grid>
-          <Grid item xs={6} className="cont-grid">
-            <OutlinedInput
-              type="text"
-              style={{ width: 400 }}
-              placeholder="http://"
-              margin="dense"
-              className="input1-form"
-              id="component-outlined"
-            />
-          </Grid>
+
           <Grid item xs={6} className="cont-grid">
             <InputLabel
               className="label-text-form"
@@ -209,6 +237,7 @@ export const RegisterEmployer = () => {
           </Grid>
           <Grid item xs={6} className="cont-grid">
             <OutlinedInput
+              rel={descripcion}
               type="text"
               style={{ width: 400 }}
               multiline
