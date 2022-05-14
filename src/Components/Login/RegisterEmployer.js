@@ -15,7 +15,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import "../../styles/RegisterEmployer.css";
 import { TitleText } from "../TitleText";
 import { useRef } from "react";
-const names = [
+const paises = [
   "Colombia",
   "Mexico",
   "Panama",
@@ -119,6 +119,7 @@ export const RegisterEmployer = () => {
             <FormControl sx={{ m: 1, minWidth: 200 }}>
               <Select
                 value={personName}
+                onChange={handleChange}
                 rel={pais}
                 displayEmpty
                 inputProps={{ "aria-label": "Without label" }}
@@ -127,7 +128,7 @@ export const RegisterEmployer = () => {
                 <MenuItem value="">
                   <span>Selecciona</span>
                 </MenuItem>
-                {names.map((name) => (
+                {paises.map((name) => (
                   <MenuItem
                     className="select-pais"
                     key={name}
