@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import "../../styles/components/NavBar.scss";
+import "../../styles/components/logo.scss";
 import Link from "@mui/material/Link";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
@@ -70,7 +71,8 @@ export const NavBar = () => {
             component="div"
             sx={{ flexGrow: 1 }}
           >
-            Job search App
+            
+            <span className="logo"> Job search App</span>
           </Typography>
           <div>
             <Button color="primary">Inicio sesión</Button>
