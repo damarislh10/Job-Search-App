@@ -116,7 +116,7 @@ export const NavBar = () => {
                         </Link>
                         <Link className="link-menu" href="/webpros/login" underline="none">
                           <MenuItem onClick={handleClose}>
-                            <PersonIcon /> Profesionales
+                            <PersonIcon /> Postulantes
                           </MenuItem>
                         </Link>
                       </MenuList>

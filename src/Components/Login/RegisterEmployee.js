@@ -87,7 +87,7 @@ export const RegisterEmployee = () => {
     <Container sx={{ width: "40%" }}>
       <form onSubmit={signup} className="container-form">
         <div>
-          <TitleText text="Registrate " />
+          <TitleText text="Registrate para nuevas oportunidades laborales" />
         </div>
         <Grid container spacing={9}>
           <Grid item xs={6} className="cont-grid">
