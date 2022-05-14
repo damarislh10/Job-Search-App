@@ -72,7 +72,9 @@ export const NavBar = () => {
           >
             Job search App
           </Typography>
-          <Button color="primary">Inicio sesión</Button>
+          <div>
+            <Button color="primary">Inicio sesión</Button>
+          </div>
           <div>
             <Button
               ref={anchorRef}
@@ -109,12 +111,20 @@ export const NavBar = () => {
                         aria-labelledby="composition-button"
                         onKeyDown={handleListKeyDown}
                       >
-                        <Link className="link-menu" href="/companies/new" underline="none">
+                        <Link
+                          className="link-menu"
+                          href="/companies/new"
+                          underline="none"
+                        >
                           <MenuItem onClick={handleClose}>
                             <ApartmentIcon /> Empleadores
                           </MenuItem>
                         </Link>
-                        <Link className="link-menu" href="/webpros/login" underline="none">
+                        <Link
+                          className="link-menu"
+                          href="/webpros/login"
+                          underline="none"
+                        >
                           <MenuItem onClick={handleClose}>
                             <PersonIcon /> Postulantes
                           </MenuItem>
