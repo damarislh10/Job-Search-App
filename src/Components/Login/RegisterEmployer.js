@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import "../../styles/RegisterEmployer.css";
+import "../../styles/components/RegisterEmployer.scss";
 import { TitleText } from "../TitleText";
 import { useRef } from "react";
 const paises = [
