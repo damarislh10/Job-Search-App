@@ -1,9 +1,11 @@
 import React from 'react'
 
-export const Home = () => {
+const Footer = () => {
   return (
     <div>
       
     </div>
   )
 }
+
+export default Footer
